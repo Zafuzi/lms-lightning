@@ -1,7 +1,7 @@
 #!/bin/bash
 
 username=zafuzi
-gameName=tidepool
+gameName=lms-lightning
 
 if [[ " $@ " =~ "-c " ]]; then
 	echo "removing old 'dist' ..."
@@ -15,6 +15,7 @@ cp index.html dist
 cp *.js dist
 cp -rL data dist
 cp -rL components dist
+echo "files copied..."
 
 
 if [[ " $@ " =~ "-z " ]]; then

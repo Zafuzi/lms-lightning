@@ -1,4 +1,4 @@
-let screen = vec(800, 600);
+let screen = vec(1280, 960);
 
 let titleFont = load_font("Arial", 30, "#F09D28");
 
@@ -7,11 +7,14 @@ let assets = {};
 let images = [
 	"data/slime1.png"
 ];
+
 let sounds = [
 	"data/plink.ogg"
 ];
 
 let can_play_audio = false;
+
+let ctx = null;
 
 document.addEventListener("DOMContentLoaded", function()
 {
@@ -20,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function()
 
 	scale_canvas(screen);
 
+	debug = false;
+
+	ctx = canvas.getContext("2d");
+
 	// title/loading screen
 	title = new Thing();
 	load_progress = 0;
@@ -27,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function()
 
 	title.listen( "draw_4", ( mouse_x, mouse_y ) => {
 		if( load_progress < 1.0 ) {
-			draw_text( "Tidepool", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 0.4 );
+			draw_text( "LMS Lightning", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 0.4 );
 			draw_text( "Loading: "+round(load_progress * 100)+"% "+load_file, screen.x * 0.5 + 15, screen.y * 0.4, titleFont, "center", 0.5 );
 		} else  {
-			draw_text( "Tidepool", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 1 );
+			draw_text( "LMS Lightning", screen.x * 0.5, screen.y * 0.5 - 15, titleFont, "center", 1 );
 			draw_text( "Click to Start ", screen.x * 0.5, screen.y * 0.5 + 15, titleFont, "center", 1 );
 
 			load_file = "";
@@ -47,9 +54,10 @@ document.addEventListener("DOMContentLoaded", function()
 		if( load_progress >= 1.0 ) {
 			title.listen( "mousedown", () => {
 				title.destroy();	// destroy the title page
-				//debug = true;
-				slime();
-			} )
+				debug = true;
+
+				player();
+			});
 		}
 
 	}, console.error );
