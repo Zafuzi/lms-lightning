@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function()
 					}
 				})
 				gui.listen( "draw_0", ( mouse_x, mouse_y ) => {
-					console.log(gui.lost)
 					if(gui.lost === false)
 					{
 						draw_text( `Score: ${score}`, 24, 24, titleFont, "left", 1 );

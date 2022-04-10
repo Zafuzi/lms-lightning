@@ -3,6 +3,8 @@ function lightningStrike()
 	let radius = 200;
 	let sq = new Squid(vec((Math.random()  * (screen.x - radius) + radius), Math.random() * screen.y));
 
+	let popSound = assets["data/plink.ogg"];
+
 	sq.radius = radius;
 	sq.hit_shape = sq.radius;
 
@@ -18,6 +20,7 @@ function lightningStrike()
 		}
 		if(sq.radius <= 0)
 		{
+			popSound.play();
 			lives -= 1;
 			sq.destroy();
 			lightningStrike();
@@ -31,6 +34,7 @@ function lightningStrike()
 	{
 		if(collider.name === "Player")
 		{
+			popSound.play();
 			sq.destroy();
 			lightningStrike();
 			changeBackground();

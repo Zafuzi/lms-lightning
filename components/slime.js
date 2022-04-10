@@ -1,7 +1,7 @@
-let move_left = newInputType("move_left", ["a"]);
-let move_right = newInputType("move_right", ["d"]);
-let move_down = newInputType("move_down", ["s"]);
-let move_up = newInputType("move_up", ["w"]);
+let move_left = newInputType("move_left", ["a", "h", "arrowLeft"]);
+let move_right = newInputType("move_right", ["d", "l", "arrowRight"]);
+let move_down = newInputType("move_down", ["s", "j", "arrowDown"]);
+let move_up = newInputType("move_up", ["w", "k", "arrowUp"]);
 
 let hasNotMovedYet = true;
 
