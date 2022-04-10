@@ -7,17 +7,18 @@ function lightningStrike()
 	sq.hit_shape = sq.radius;
 
 	let ticker = 0;
-	let radiusDecrementSpeed = 4;
+	let radiusDecrementSpeed = 2;
 	sq.listen("tick", function()
 	{
 		screenWrap(sq);
 
-		if(ticker % radiusDecrementSpeed === 0)
+		if(ticker % 2 === 0)
 		{
-			sq.radius -= 1;
+			sq.radius -= radiusDecrementSpeed;
 		}
 		if(sq.radius <= 0)
 		{
+			lives -= 1;
 			sq.destroy();
 			lightningStrike();
 		}
@@ -30,11 +31,11 @@ function lightningStrike()
 	{
 		if(collider.name === "Player")
 		{
-			console.log("smuck")
 			sq.destroy();
 			lightningStrike();
 			changeBackground();
-			radiusDecrementSpeed -= 0.01;
+			radiusDecrementSpeed += 0.1;
+			score += 1;
 		}
 	});
 

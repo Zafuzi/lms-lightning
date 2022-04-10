@@ -5,6 +5,8 @@ let move_up = newInputType("move_up", ["w"]);
 
 let hasNotMovedYet = true;
 
+let Player = null;
+
 function player()
 {
 	let player_img = assets["data/slime1.png"];
@@ -31,9 +33,15 @@ function player()
 		} else  {
 			movementTutorial.destroy();
 		}
-	} );
-}
+	});
 
+	setTimeout(function()
+	{
+		movementTutorial.destroy();
+	}, 3000);
+
+	Player = sq;
+}
 
 function handleMovement(sq)
 {
