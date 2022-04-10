@@ -56,6 +56,8 @@ document.addEventListener("DOMContentLoaded", function()
 				title.destroy();	// destroy the title page
 				debug = true;
 
+				lightningStrike();
+
 				player();
 			});
 		}

@@ -13,12 +13,15 @@ function player()
 	let sq = new Squid(vec(100, 100), player_img);
 
 	sq.hit_shape = player_img.make_radius();
+	sq.name = "Player";
 
 	sq.listen("tick", function()
 	{
 		handleMovement(sq);
 		screenWrap(sq);
 	});
+
+	sq.listen("collide");
 
 	let movementTutorial = new Thing();
 
@@ -65,38 +68,34 @@ function handleMovement(sq)
 
 function screenWrap(sq)
 {
-	let sqWidth = sq.image.w * sq.scale;
-	let sqHeight = sq.image.h * sq.scale;
+	let sqWidth = (sq.image?.w || sq.radius) * sq.scale;
+	let sqHeight = (sq.image?.h || sq.radius)  * sq.scale;
 
 
 	if(sq.position.x + sqWidth / 2 < 0)
 	{
 		sq.position.x = screen.x;
-		changeBackground();
 	}
 
 	if(sq.position.x > screen.x + sqWidth / 2)
 	{
 		sq.position.x = -sqWidth / 2;
-		changeBackground();
 	}
 
 	if(sq.position.y + sqHeight / 2 < 0)
 	{
 		sq.position.y = screen.y;
-		changeBackground();
 	}
 
 	if(sq.position.y > screen.y + sqHeight / 2)
 	{
 		sq.position.y = -sqHeight / 2;
-		changeBackground();
 	}
 
 }
 
 function changeBackground()
 {
-	//canvas.style.backgroundColor = `rgb(${Math.random()*50}, ${Math.random()*50}, ${Math.random()*50})`;
-	redrawLightning();
+	canvas.style.backgroundColor = `rgb(${Math.random()*50}, ${Math.random()*50}, ${Math.random()*50})`;
+	//redrawLightning();
 }
